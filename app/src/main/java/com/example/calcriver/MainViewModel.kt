@@ -12,7 +12,7 @@ class MainViewModel : ViewModel() {
     var contadorPulsacion: Int = 0
     private var lecturaCopia: String = ""
     private var contadorBackground: Int = 0 // Sirve para las operaciones de mas de dos operadores
-    private var operators = listOf<Char>('+', '-', 'x', '/')
+    private var operators = listOf<Char>('+', '-', 'x', '/','%')
     private var longitud = 0 //longitud de la operacion base
     lateinit var binding: ActivityMainBinding
     private var firstDouble: Boolean = false  // Operaciones con decimales
@@ -135,7 +135,8 @@ class MainViewModel : ViewModel() {
                 '+' -> resultado = opOne + opSecond
                 '-' -> resultado = opOne - opSecond
                 'x' -> resultado = opOne * opSecond
-                '/' -> resultado = opOne / opSecond
+                '/' -> resultado = divide(opOne,opSecond)
+                '%' -> resultado = opOne % opSecond
             }
 
             var resultado2 = 0
@@ -221,5 +222,9 @@ class MainViewModel : ViewModel() {
         }*/
         //resultado final
         _rewriteObserver.value = resultado
+    }
+
+    fun divide(param1 :  Double,param2 :Double) : Double {
+        return (param1/param2).toDouble()
     }
 }
